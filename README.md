@@ -5,12 +5,11 @@
 ---
 
 ## Basic Details  
-### Team Name: Team NotFound404
+### Team Name: Null & Void Co.
 
-### Team Members
-- Team Lead: Aryan S. - ABC College of Engineering  
-- Member 2: Jiya R. - XYZ Institute of Tech  
-- Member 3: Rohan K. - LMN School of Computing  
+### Team Members 
+- Member 1: Irine M B - ASIET 
+- Member 2: Sabarish Mohanadas - ASIET  
 
 ---
 
