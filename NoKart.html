@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Useless Grocery Shop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom right, #3b82f6, #06b6d4, #bfdbfe);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    .search-box {
+      display: flex;
+      margin: 1rem;
+      width: 100%;
+      max-width: 500px;
+    }
+    input[type='text'] {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 10px 0 0 10px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      background: #1e3a8a;
+      color: white;
+      border: none;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+    }
+    .excuse {
+      background: #1e40af;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      max-width: 500px;
+      text-align: center;
+    }
+    .items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      max-width: 600px;
+      width: 100%;
+    }
+    .item {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .cart {
+      background: white;
+      color: #1e3a8a;
+      padding: 1rem;
+      border-radius: 12px;
+      max-width: 400px;
+      margin-top: 2rem;
+      width: 100%;
+    }
+    .cart ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .cart li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .cart a button {
+      background: #dc2626;
+      border-radius: 5px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Useless Grocery Shop</h1>
+  <form method="POST" class="search-box">
+    <input type="text" name="query" placeholder="Enter your grocery item" />
+    <button type="submit">Search</button>
+  </form>
+
+  {% if excuse %}
+  <div class="excuse">{{ excuse }}</div>
+  {% endif %}
+
+  <div class="items">
+    {% for item in items %}
+    <div class="item">
+      <p><strong>{{ item }}</strong></p>
+      <a href="{{ url_for('add_to_cart', item=item) }}">
+        <button>Add to Cart</button>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="cart">
+    <h3>Cart</h3>
+    {% if cart %}
+      <ul>
+        {% for item in cart %}
+        <li>
+          {{ item }}
+          <a href="{{ url_for('remove_from_cart', item=item) }}">
+            <button>Remove</button>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Your cart is empty, just like our functionality.</p>
+    {% endif %}
+    <a href="{{ url_for('checkout') }}">
+      <button>Checkout</button>
+    </a>
+  </div>
+</body>
+</html>
